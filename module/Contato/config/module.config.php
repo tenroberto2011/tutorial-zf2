@@ -4,7 +4,8 @@ return array(
     # definir e gerenciar controllers
     'controllers' => array(
         'invokables' => array(
-            'HomeController' => 'Contato\Controller\HomeController'
+            'HomeController'        => 'Contato\Controller\HomeController',
+            'ContatosController'    => 'Contato\Controller\ContatosController',
         ),
     ),
 
@@ -31,6 +32,22 @@ return array(
                     'defaults' => array(
                         'controller' => 'HomeController',
                         'action'     => 'sobre',
+                    ),
+                ),
+            ),
+            
+            # segment para controller contatos
+            'contatos' => array(
+                'type'      => 'Segment',
+                'options'   => array(
+                    'route'    => '/contatos[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'ContatosController',
+                        'action'     => 'index',
                     ),
                 ),
             ),
